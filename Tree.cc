@@ -3,8 +3,8 @@
 
 BinaryTree::BinaryTree(int d, vector<double> a) {
     k = d;
-    arrel.clau = a;
-    arrel.h = 0;
+    arrel->clau = a;
+    arrel->h = 0;
 }
 
 // acabar
@@ -28,24 +28,24 @@ void BinaryTree::insert(node* padre, node* n, int height, vector<double> c) {
     if (n != NULL) {
         int j = n->h%k;
         //izquierda
-        if (a[j] < n->clau[j]) {
-            insert(n,n->left, n->h + 1, a);
+        if (c[j] < n->clau[j]) {
+            insert(n,n->left, n->h + 1, c);
         }
         //derecha
-        else if (a[j] > n->clau[j]) {
-            insert(n,n->right, n->h + 1, a);
+        else if (c[j] > n->clau[j]) {
+            insert(n,n->right, n->h + 1, c);
         }
     }
     //crear si no existe
     else {
         int j = (height-1)%k;
-        node nuevo;
-        nuevo.clau = c;
-        nuevo.h = height;
+        node* nuevo;
+        nuevo->clau = c;
+        nuevo->h = height;
         if (padre->clau[j] < c[j]) {
             padre->right = nuevo;
         }
-        else (padre->clau[j] > c[j]) {
+        else if (padre->clau[j] > c[j]) {
             padre->right = nuevo;
         }
     }

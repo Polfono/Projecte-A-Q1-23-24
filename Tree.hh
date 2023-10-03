@@ -8,14 +8,14 @@ using namespace std;
 class BinaryTree {
 private:
     int k;
-    struct Node {
-        Node* left;
-        Node* right;
-        vector<double> claus;   
+    struct node {
+        node* left;
+        node* right;
+        vector<double> clau;   
         int h;  //altura
     };
 
-    Node* arrel;
+    node* arrel;
 
 public:
     // Creadora: d = dimensions del arbre, a = vector de claus de la arrel
@@ -24,8 +24,11 @@ public:
     // Destructora
     ~BinaryTree();
 
-    // 
-    void insert(vector<double> a);
+    //insertar inicial
+    void insertInit(vector<double> a);
+
+    //insertar recurs
+    void insert(node* padre, node* n, int height, vector<double> c);
 
 
 };

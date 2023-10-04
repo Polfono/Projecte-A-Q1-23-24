@@ -104,3 +104,50 @@ BinaryTree::BinaryTree(int k, int n) {
     }
 }
 
+double BinaryTree::CalcDistancia(const vector<double>& P, const vector<double>& Q) {
+    double distancia = 0.0;
+    for(int i = 0; i < k; i++) {
+        distancia += pow(P[i] - Q[i], 2);
+    }
+    return sqrt(distancia);
+}
+
+vector<double> BinaryTree::nearestNeighbor(const vector<double>& origen) {
+    if (arrel == nullptr) return{}; // arbre buit
+
+    node* vecino = nullptr;
+    double millorDistancia = numeric_limits<double>::max();
+
+    nearestNeighbor(arrel, origen, vecino, millorDistancia);
+
+    if (vecino != nullptr) return vecino->clau;
+    else return {};
+}
+
+void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia) {
+    if (actual == nullptr) return;
+
+    double actualDistancia = CalcDistancia(actual->clau, origen);
+
+    if (actualDistancia < millorDistancia and actualDistancia != 0.0) {
+            vecino = actual;
+            millorDistancia = actualDistancia;
+    }
+
+    int j = actual->h % k;
+    double valorOrigen = origen[j];
+    double valorActual = actual->clau[j];
+
+    if (valorOrigen < valorActual) {
+        nearestNeighbor(actual->left, origen, vecino, millorDistancia);
+        if (valorActual - valorOrigen <= millorDistancia) {
+            nearestNeighbor(actual->right, origen, vecino, millorDistancia);
+        }
+    } else {
+        nearestNeighbor(actual->right, origen, vecino, millorDistancia);
+        if (valorOrigen - valorActual <= millorDistancia) {
+            nearestNeighbor(actual->left, origen, vecino, millorDistancia);
+        }
+    }
+}
+

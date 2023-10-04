@@ -5,7 +5,7 @@ using namespace std;
 int main() {
 
     //Descomentar si quieres usar la tabla del enunciado
-    /*vector<vector<double>> tabla = {
+    vector<vector<double>> tabla = {
         {0.7267, 0.4785},
         {0.6533, 0.4247},
         {0.4467, 0.6022},
@@ -28,16 +28,28 @@ int main() {
         {0.9833, 0.9247},
         {0.6667, 0.6022},
         {0.0000, 0.0000}
-    };*/
+    };
 
 
-    BinaryTree Arbol(2, 20);
+    BinaryTree Arbol(2);
 
-    /*for (int i = 0; i < tabla.size(); ++i) {
+    for (int i = 0; i < tabla.size(); ++i) {
         Arbol.insertInit(tabla[i]);
-    }*/
+    }
 
     Arbol.print2D();
+
+    vector<double> consulta = {0.0000, 0.0000};
+    
+    vector<double> vecino = Arbol.nearestNeighbor(consulta);
+
+    if (!vecino.empty()) {
+        cout << endl << "Vecino de ";
+        for(int i = 0; i < consulta.size(); i++) cout << consulta[i] << " ";
+        cout << ": ";
+        for(int i = 0; i < vecino.size(); i++) cout << vecino[i] << " ";
+        cout << endl;
+    }
 
     Arbol.BorrarInit();
 }

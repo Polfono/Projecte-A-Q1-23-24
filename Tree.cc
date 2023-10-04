@@ -94,7 +94,7 @@ BinaryTree::BinaryTree(int k, int n) {
     vector<double> values(k);
     for (int j = 0; j < n; ++j) {
         for (int i = 0; i < k; i++) {
-            double v = static_cast<double>(rand() % 10000) / 10000.0; // 5 decimales
+            double v = static_cast<double>(rand())/RAND_MAX; // 5 decimales
             values[i] = v;
         }
 

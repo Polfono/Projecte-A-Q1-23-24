@@ -31,7 +31,7 @@ int main() {
     };*/
 
 
-    BinaryTree Arbol(2,1000000);
+    BinaryTree Arbol(6,10000000);
 
     /*for (int i = 0; i < tabla.size(); ++i) {
         Arbol.insertInit(tabla[i]);
@@ -42,7 +42,7 @@ int main() {
     //Arbol.print2D();
 
 
-    vector<double> consulta = {0.9833, 0.9247};
+    vector<double> consulta = {double(rand())/RAND_MAX, double(rand())/RAND_MAX,double(rand())/RAND_MAX,double(rand())/RAND_MAX,double(rand())/RAND_MAX,double(rand())/RAND_MAX};
     
     vector<double> vecino = Arbol.nearestNeighbor(consulta);
 

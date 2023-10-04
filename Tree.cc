@@ -91,10 +91,8 @@ BinaryTree::BinaryTree(int k, int n) {
     arrel = nullptr;
     this->k = k;
     srand(time(NULL));
-
+    vector<double> values(k);
     for (int j = 0; j < n; ++j) {
-        vector<double> values(k);
-
         for (int i = 0; i < k; i++) {
             double v = static_cast<double>(rand() % 10000) / 10000.0; // 5 decimales
             values[i] = v;
@@ -104,6 +102,7 @@ BinaryTree::BinaryTree(int k, int n) {
     }
 }
 
+//Calcula distancia euclidiana en K dimensiones
 double BinaryTree::CalcDistancia(const vector<double>& P, const vector<double>& Q) {
     double distancia = 0.0;
     for(int i = 0; i < k; i++) {
@@ -112,6 +111,7 @@ double BinaryTree::CalcDistancia(const vector<double>& P, const vector<double>& 
     return sqrt(distancia);
 }
 
+//Inicia la cerca del veí mes proper  al node origen
 vector<double> BinaryTree::nearestNeighbor(const vector<double>& origen) {
     if (arrel == nullptr) return{}; // arbre buit
 
@@ -119,13 +119,16 @@ vector<double> BinaryTree::nearestNeighbor(const vector<double>& origen) {
     double millorDistancia = numeric_limits<double>::max();
 
     nearestNeighbor(arrel, origen, vecino, millorDistancia);
-
+    cout << "SE HAN VISITADO " << count << " NODOS EN LA BUSQUEDA LOG" << endl;
+    count = 0;
     if (vecino != nullptr) return vecino->clau;
     else return {};
 }
 
+//Cerca recursiva
 void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia) {
     if (actual == nullptr) return;
+    ++count;
 
     double actualDistancia = CalcDistancia(actual->clau, origen);
 
@@ -149,5 +152,38 @@ void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, nod
             nearestNeighbor(actual->left, origen, vecino, millorDistancia);
         }
     }
+}
+
+
+//Inicia la cerca del veí mes proper  al node origen LINEAL
+vector<double> BinaryTree::nearestNeighborLINEAL(const vector<double>& origen) {
+    if (arrel == nullptr) return{}; // arbre buit
+
+    node* vecino = nullptr;
+    double millorDistancia = numeric_limits<double>::max();
+
+    nearestNeighborLINEAL(arrel, origen, vecino, millorDistancia);
+    cout << "SE HAN VISITADO " << count << " NODOS EN LA BUSQUEDA LINEAL" << endl;
+    count = 0;
+    if (vecino != nullptr) return vecino->clau;
+    else return {};
+}
+
+
+//Cerca recursiva LINEAL
+void BinaryTree::nearestNeighborLINEAL(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia) {
+    if (actual == nullptr) return;
+    ++count;
+
+    double actualDistancia = CalcDistancia(actual->clau, origen);
+
+    if (actualDistancia < millorDistancia and actualDistancia != 0.0) {
+            vecino = actual;
+            millorDistancia = actualDistancia;
+    }
+    //IZQUIERDA
+    nearestNeighborLINEAL(actual->left, origen, vecino, millorDistancia);
+    //DERECHA
+    nearestNeighborLINEAL(actual->right, origen, vecino, millorDistancia);
 }
 

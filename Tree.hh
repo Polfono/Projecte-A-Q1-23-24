@@ -17,7 +17,7 @@ private:
         vector<double> clau;   
         int h;  //altura
     };
-
+    int count = 0;
     node* arrel;
 
     // Insertar recurs
@@ -34,6 +34,9 @@ private:
 
     // Busqueda vecino recurs
     void nearestNeighbor(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia);
+
+    // Busqueda vecino recurs LINEAL
+    void nearestNeighborLINEAL(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia);
 
 
 public:
@@ -57,6 +60,9 @@ public:
 
     // Devuelve el vecino mas cercano del punto origen
     vector<double> nearestNeighbor(const vector<double>& origen);
+
+    // Devuelve el vecino mas cercano del punto origen LINEAL
+    vector<double> nearestNeighborLINEAL(const vector<double>& origen);
 
 };
 

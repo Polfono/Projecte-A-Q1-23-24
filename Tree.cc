@@ -119,8 +119,6 @@ vector<double> BinaryTree::nearestNeighbor(const vector<double>& origen) {
     double millorDistancia = numeric_limits<double>::max();
 
     nearestNeighbor(arrel, origen, vecino, millorDistancia);
-    cout << "SE HAN VISITADO " << count << " NODOS EN LA BUSQUEDA LOG" << endl;
-    count = 0;
     if (vecino != nullptr) return vecino->clau;
     else return {};
 }
@@ -163,8 +161,6 @@ vector<double> BinaryTree::nearestNeighborLINEAL(const vector<double>& origen) {
     double millorDistancia = numeric_limits<double>::max();
 
     nearestNeighborLINEAL(arrel, origen, vecino, millorDistancia);
-    cout << "SE HAN VISITADO " << count << " NODOS EN LA BUSQUEDA LINEAL" << endl;
-    count = 0;
     if (vecino != nullptr) return vecino->clau;
     else return {};
 }
@@ -185,5 +181,11 @@ void BinaryTree::nearestNeighborLINEAL(node* actual, const vector<double>& orige
     nearestNeighborLINEAL(actual->left, origen, vecino, millorDistancia);
     //DERECHA
     nearestNeighborLINEAL(actual->right, origen, vecino, millorDistancia);
+}
+
+int BinaryTree::checkNumNodes() {
+    int aux = count;
+    count = 0;
+    return aux;
 }
 

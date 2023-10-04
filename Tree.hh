@@ -64,6 +64,9 @@ public:
     // Devuelve el vecino mas cercano del punto origen LINEAL
     vector<double> nearestNeighborLINEAL(const vector<double>& origen);
 
+    // Mirar numero de nodos y inicializar a 0
+    int checkNumNodes();
+
 };
 
 #endif

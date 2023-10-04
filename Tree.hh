@@ -39,10 +39,9 @@ public:
     //Escriu arbre per terminal
     void print2D();
 
+    // Borrar el árbol
     void BorrarInit();
 
 };
-
-
 
 #endif

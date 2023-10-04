@@ -31,7 +31,7 @@ int main() {
     };*/
 
 
-    BinaryTree Arbol(2,30);
+    BinaryTree Arbol(2, 20);
 
     /*for (int i = 0; i < tabla.size(); ++i) {
         Arbol.insertInit(tabla[i]);
@@ -40,9 +40,5 @@ int main() {
     Arbol.print2D();
 
     Arbol.BorrarInit();
-
-    cout << "------------------------------------------------------------------------------------------------------" <<endl;
-
-    Arbol.print2D();
 }
 

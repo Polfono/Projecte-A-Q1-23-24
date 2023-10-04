@@ -16,4 +16,4 @@ tar: Makefile Tree.cc Tree.hh main.cc
 	tar -cvf practica.tar .cc.hh Makefile
 
 clean: 
-	rm -f .o .exe .tar
+	rm *.o *.exe *.tar

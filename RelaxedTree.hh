@@ -1,5 +1,5 @@
-#ifndef TREE_HH
-#define TREE_HH
+#ifndef RELAXEDREE_HH
+#define RELAXEDTREE_HH
 #include <vector>
 #include <iostream>
 #include <random>
@@ -8,26 +8,27 @@
 using namespace std;
 
 
-class BinaryTree {
+class RelaxedBinaryTree {
 private:
     int k;
     struct node {
         node* left;
         node* right;
-        vector<double> clau;   
+        vector<double> clau;
         int h;  //altura
+        int clauAUtilitzar; // [0, k-1]
     };
     int count = 0;
     node* arrel;
 
     // Insertar recurs
     void insert(node* padre, node* n, int height, const vector<double>& c);
-    
+
     // Print recurs
     void print2DUtil(node* root, int space);
 
     // Borrar recurs
-    void BorrarBinaryTree(node* n);
+    void BorrarRelaxedBinaryTree(node* n);
 
     // Calcular distnacia euclidiana entre dos puntos P, Q
     double CalcDistancia(const vector<double>& P, const vector<double>& Q);
@@ -41,10 +42,10 @@ private:
 
 public:
     // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
-    BinaryTree(int d);
+    RelaxedBinaryTree(int d);
 
     //Constructora random
-    BinaryTree(int k, int n);
+    RelaxedBinaryTree(int k, int n);
 
     //insertar inicial
     void insertInit(const vector<double>& a);

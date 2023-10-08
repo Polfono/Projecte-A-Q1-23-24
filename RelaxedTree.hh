@@ -54,7 +54,7 @@ public:
     void print2D();
 
     // Borrar el árbol
-    void BorrarInit();
+    void BorrarRelaxedInit();
 
     // Devuelve el vecino mas cercano del punto origen
     vector<double> nearestNeighbor(const vector<double>& origen);

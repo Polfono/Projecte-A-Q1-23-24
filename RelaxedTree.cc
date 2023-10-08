@@ -5,7 +5,7 @@ RelaxedBinaryTree::RelaxedBinaryTree(int d) {
     arrel = nullptr;
 }
 
-void RelaxedBinaryTree::BorrarInit() {
+void RelaxedBinaryTree::BorrarRelaxedInit() {
     BorrarRelaxedBinaryTree(arrel);
     arrel = nullptr;
 }
@@ -26,6 +26,7 @@ void RelaxedBinaryTree::insertInit(const vector<double>& a) {
         arrel->clau = a;
         arrel->h = 0;
         arrel->right = arrel->left = nullptr;
+        arrel->clauAUtilitzar = // Generar numero entre 0 i k-1
         return;
     }
 
@@ -42,6 +43,7 @@ void RelaxedBinaryTree::insert(node* padre, node* n, int height, const vector<do
         nuevo->clau = c;
         nuevo->h = height;
         nuevo->right = nuevo->left = nullptr;
+        nuevo->clauAUtilitzar =  // Generar numero entre 0 i k-1
 
         if (padre->clau[j] < c[j]) padre->right = nuevo;
         else padre->left = nuevo;
@@ -130,7 +132,7 @@ void RelaxedBinaryTree::nearestNeighbor(node* actual, const vector<double>& orig
             millorDistancia = actualDistancia;
     }
 
-    int j = actual->h % k;
+    int j = actual->clauAUtilitzar;
     double valorOrigen = origen[j];
     double valorActual = actual->clau[j];
 

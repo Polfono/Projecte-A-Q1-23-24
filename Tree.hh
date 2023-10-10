@@ -43,6 +43,8 @@ public:
     // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
     BinaryTree(int d);
 
+    ~BinaryTree();
+
     //Constructora random
     BinaryTree(int k, int n);
 

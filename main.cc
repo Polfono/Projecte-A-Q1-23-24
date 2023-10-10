@@ -1,8 +1,15 @@
 #include <iostream>
+#include <random>
 #include "Tree.hh"
 using namespace std;
 
 int main() {
+
+    random_device myRandomDevice;
+    unsigned seed = myRandomDevice();
+    uniform_real_distribution<double> Uniforme(0.0, 1.0);
+    default_random_engine RNG(seed);
+    
 
     int k, n, t, q;
 
@@ -24,7 +31,7 @@ int main() {
 
         for(int j = 0; j < q; j++) {
             vector<double> consulta(k);
-            for(int l = 0; l < k; l++) consulta[l] = double(rand())/RAND_MAX;
+            for(int l = 0; l < k; l++) consulta[l] = Uniforme(RNG);
 
             vector<double> vecino = Arbol.nearestNeighbor(consulta);
 
@@ -32,7 +39,6 @@ int main() {
             cout << aux << " ";
             sum += aux;
         }
-
         Arbol.BorrarInit();
     }
     cout << endl << "Numero medio de nodos visitados: " << sum/(t*q) << endl;

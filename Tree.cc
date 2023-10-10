@@ -5,6 +5,11 @@ BinaryTree::BinaryTree(int d) {
     arrel = nullptr;
 }
 
+//Destructora
+BinaryTree::~BinaryTree() {
+
+}
+
 void BinaryTree::BorrarInit() {
     BorrarBinaryTree(arrel);
     arrel = nullptr;
@@ -83,15 +88,16 @@ void BinaryTree::print2D()
 
 //Constructora d'un arbre k-d random donats una k i una n fixes
 BinaryTree::BinaryTree(int k, int n) {
+    random_device myRandomDevice;
+    unsigned seed = myRandomDevice();
+    uniform_real_distribution<double> Uniforme(0.0, 1.0);
+    default_random_engine RNG(seed);
+
     arrel = nullptr;
     this->k = k;
-    srand(time(NULL));
     vector<double> values(k);
     for (int j = 0; j < n; ++j) {
-        for (int i = 0; i < k; i++) {
-            double v = static_cast<double>(rand())/RAND_MAX; // 5 decimales
-            values[i] = v;
-        }
+        for (int i = 0; i < k; i++) values[i] = Uniforme(RNG);
 
         insertInit(values);
     }

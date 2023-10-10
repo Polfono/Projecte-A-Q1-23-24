@@ -5,11 +5,6 @@ BinaryTree::BinaryTree(int d) {
     arrel = nullptr;
 }
 
-//Destructora
-BinaryTree::~BinaryTree() {
-
-}
-
 void BinaryTree::BorrarInit() {
     BorrarBinaryTree(arrel);
     arrel = nullptr;
@@ -24,39 +19,27 @@ void BinaryTree::BorrarBinaryTree(node* n) {
 }
 
 //Comenca les crides recursives per inserir un node amb clau a 
-void BinaryTree::insertInit(const vector<double>& a) {
-
-    if (arrel == nullptr) {
-        arrel = new node;  // Allocate memory for the root node
-        arrel->clau = a;
-        arrel->h = 0;
-        arrel->right = arrel->left = nullptr;
-        return;
-    }
-    
-    int j = 0;
-    if (a[j] < arrel->clau[j]) insert(arrel, arrel->left, arrel->h + 1, a); //izquierda
-    else insert(arrel, arrel->right, arrel->h + 1, a); //derecha
+void BinaryTree::insert(const vector<double>& a) {
+    arrel = insertRecursive(arrel, a, 0);
 }
 
 //Inserta el node amb clau c correctament a l'arbre
-void BinaryTree::insert(node* padre, node* n, int height, const vector<double>& c) {
-    if (n == nullptr) {         // no existe
-        int j = (height - 1)%k;
-        node* nuevo = new node;
-        nuevo->clau = c;
-        nuevo->h = height;
-        nuevo->right = nuevo->left = nullptr;
+BinaryTree::node* BinaryTree::insertRecursive(node* actual, const vector<double>& c, int height) {
+    if (actual == nullptr) {
+        node* newNode = new node;
+        newNode->clau = c;
+        newNode->h = height;
+        newNode->left = newNode->right = nullptr;
+        return newNode;
+    }
 
-        if (padre->clau[j] < c[j]) padre->right = nuevo;
-        else padre->left = nuevo;
-    }
-    
-    else {                      // existe
-        int j = (n->h)%k;
-        if (c[j] < n->clau[j]) insert(n,n->left, n->h + 1, c); //izquierda
-        else insert(n,n->right, n->h + 1, c); //derecha
-    }
+    int dimension = height % k;
+    if (c[dimension] < actual->clau[dimension])
+        actual->left = insertRecursive(actual->left, c, height + 1);
+    else
+        actual->right = insertRecursive(actual->right, c, height + 1);
+
+    return actual;
 }
 
 
@@ -99,7 +82,7 @@ BinaryTree::BinaryTree(int k, int n) {
     for (int j = 0; j < n; ++j) {
         for (int i = 0; i < k; i++) values[i] = Uniforme(RNG);
 
-        insertInit(values);
+        insert(values);
     }
 }
 

@@ -21,7 +21,7 @@ private:
     node* arrel;
 
     // Insertar recurs
-    void insert(node* padre, node* n, int height, const vector<double>& c);
+    BinaryTree::node* insertRecursive(node* actual, const vector<double>& c, int height);
     
     // Print recurs
     void print2DUtil(node* root, int space);
@@ -43,13 +43,11 @@ public:
     // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
     BinaryTree(int d);
 
-    ~BinaryTree();
-
     //Constructora random
     BinaryTree(int k, int n);
 
     //insertar inicial
-    void insertInit(const vector<double>& a);
+    void insert(const vector<double>& a);
 
     //Escriu arbre per terminal
     void print2D();

@@ -35,6 +35,6 @@ int main() {
 
         Arbol.BorrarInit();
     }
-    cout << endl << "Numero medio de nodos visitados: " << sum/t << endl;
+    cout << endl << "Numero medio de nodos visitados: " << sum/(t*q) << endl;
 }
 

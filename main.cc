@@ -4,32 +4,37 @@ using namespace std;
 
 int main() {
 
-    int k, n, t;
+    int k, n, t, q;
 
     cout << "Valor de k: ";
     cin >> k;
-    cout << endl;
     cout << "Valor de n: ";
     cin >> n;
-    cout << endl; 
     cout << "Numero de arboles: ";
     cin >> t;
-    cout << endl; 
+    cout << "Consultas por arbol: ";
+    cin >> q;
 
     // PARTE LOGARITMICA
-
+    
+    cout << "Nodos visitados para cada busqueda: ";
     int sum = 0;
     for(int i = 0; i < t; i++) {
         BinaryTree Arbol(k,n);
 
-        vector<double> consulta(k);
-        for(int j = 0; j < k; j++) consulta[j] = double(rand())/RAND_MAX;
+        for(int j = 0; j < q; j++) {
+            vector<double> consulta(k);
+            for(int l = 0; l < k; l++) consulta[l] = double(rand())/RAND_MAX;
 
-        vector<double> vecino = Arbol.nearestNeighbor(consulta);
+            vector<double> vecino = Arbol.nearestNeighbor(consulta);
 
-        sum += Arbol.checkNumNodes();
+            int aux = Arbol.checkNumNodes();
+            cout << aux << " ";
+            sum += aux;
+        }
+
         Arbol.BorrarInit();
     }
-    cout << "Numero medio de nodos visitados con algoritmo logaritmico: " << sum/t << endl;
+    cout << endl << "Numero medio de nodos visitados: " << sum/t << endl;
 }
 

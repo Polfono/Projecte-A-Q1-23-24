@@ -42,35 +42,8 @@ BinaryTree::node* BinaryTree::insertRecursive(node* actual, const vector<double>
     return actual;
 }
 
-
-// Imprimir arbre recursivament
-void BinaryTree::print2DUtil(node* root, int space)
-{
-    if (root == nullptr)
-        return;
-
-    const int spaceIncrement = 10;
-
-    print2DUtil(root->right, space + spaceIncrement);
-
-    cout << endl << string(space, ' ');
-
-    for (const auto& value : root->clau)
-        cout << value << " ";
-
-    cout << endl;
-
-    print2DUtil(root->left, space + spaceIncrement);
-}
-
-// Imprimeix l'arbre
-void BinaryTree::print2D()
-{
-    print2DUtil(arrel, 0); //space = 0
-}
-
-//Constructora d'un arbre k-d random donats una k i una n fixes
-BinaryTree::BinaryTree(int k, int n) {
+//Constructora d'un arbre k-d random donats una k i una n fixes; treeType: 0-normal, 1-relaxed, 2-squarish
+BinaryTree::BinaryTree(int k, int n, int treeType) {
     random_device myRandomDevice;
     unsigned seed = myRandomDevice();
     uniform_real_distribution<double> Uniforme(0.0, 1.0);
@@ -82,7 +55,9 @@ BinaryTree::BinaryTree(int k, int n) {
     for (int j = 0; j < n; ++j) {
         for (int i = 0; i < k; i++) values[i] = Uniforme(RNG);
 
-        insert(values);
+        if(treeType == 0) insert(values);
+        else if (treeType == 1) insertRelaxed(values);
+        else if (treeType == 2) {}; // Insertar metodo squarish
     }
 }
 
@@ -114,7 +89,7 @@ void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, nod
 
     double actualDistancia = CalcDistancia(actual->clau, origen);
 
-    if (actualDistancia < millorDistancia and actualDistancia != 0.0) {
+    if (actualDistancia < millorDistancia) {
             vecino = actual;
             millorDistancia = actualDistancia;
     }
@@ -136,6 +111,44 @@ void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, nod
     }
 }
 
+int BinaryTree::checkNumNodes() {
+    int aux = count;
+    count = 0;
+    return aux;
+}
+
+// metode d'insersio de node amb clau a per a arbre relaxat
+void BinaryTree::insertRelaxed(const vector<double>& a) {
+    arrel = insertRelaxed(arrel, a);
+}
+
+//Util recursiu per a inserir a Relaxed Tree
+BinaryTree::node* BinaryTree::insertRelaxed(node* actual, const vector<double>& c) {
+    if (actual == nullptr) {
+        random_device myRandomDevice;
+        unsigned seed = myRandomDevice();
+        uniform_int_distribution<int> Uniforme(0, k-1);
+        default_random_engine RNG(seed);
+        
+
+        node* newNode = new node;
+        newNode->clau = c;
+        newNode->h = Uniforme(RNG);
+        newNode->left = newNode->right = nullptr;
+        return newNode;
+    }
+
+    int dimension = actual->h;
+    if (c[dimension] < actual->clau[dimension])
+        actual->left = insertRelaxed(actual->left, c);
+    else
+        actual->right = insertRelaxed(actual->right, c);
+
+    return actual;
+}
+
+
+/*  DEBUG
 
 //Inicia la cerca del veí mes proper  al node origen LINEAL
 vector<double> BinaryTree::nearestNeighborLINEAL(const vector<double>& origen) {
@@ -167,9 +180,30 @@ void BinaryTree::nearestNeighborLINEAL(node* actual, const vector<double>& orige
     nearestNeighborLINEAL(actual->right, origen, vecino, millorDistancia);
 }
 
-int BinaryTree::checkNumNodes() {
-    int aux = count;
-    count = 0;
-    return aux;
+// Imprimir arbre recursivament
+void BinaryTree::print2DUtil(node* root, int space)
+{
+    if (root == nullptr)
+        return;
+
+    const int spaceIncrement = 10;
+
+    print2DUtil(root->right, space + spaceIncrement);
+
+    cout << endl << string(space, ' ');
+
+    cout << root->h << " ";
+
+    cout << endl;
+
+    print2DUtil(root->left, space + spaceIncrement);
 }
+
+// Imprimeix l'arbre
+void BinaryTree::print2D()
+{
+    print2DUtil(arrel, 0); //space = 0
+}
+
+*/
 

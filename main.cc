@@ -11,8 +11,11 @@ int main() {
     default_random_engine RNG(seed);
     
 
-    int k, n, t, q;
+    int k, n, t, q, typeTree, c;
 
+    cout << "Elige tipo de arbol (0-kd, 1-Relaxed, 2-Squarish): ";
+    cin >> typeTree;
+    while(typeTree < 0 or typeTree > 2) cin >> typeTree;
     cout << "Valor de k: ";
     cin >> k;
     cout << "Valor de n: ";
@@ -21,13 +24,15 @@ int main() {
     cin >> t;
     cout << "Consultas por arbol: ";
     cin >> q;
+    cout << "Ver nodos visitados por consulta? 0-no 1-sí: ";
+    cin >> c;
 
     // PARTE LOGARITMICA
     
-    cout << "Nodos visitados para cada busqueda: ";
+    if(c) cout << "Nodos visitados para cada busqueda: ";
     int sum = 0;
     for(int i = 0; i < t; i++) {
-        BinaryTree Arbol(k,n);
+        BinaryTree Arbol(k, n, typeTree);
 
         for(int j = 0; j < q; j++) {
             vector<double> consulta(k);
@@ -36,9 +41,10 @@ int main() {
             vector<double> vecino = Arbol.nearestNeighbor(consulta);
 
             int aux = Arbol.checkNumNodes();
-            cout << aux << " ";
+            if(c) cout << aux << " ";
             sum += aux;
         }
+
         Arbol.BorrarInit();
     }
     cout << endl << "Numero medio de nodos visitados: " << sum/(t*q) << endl;

@@ -38,13 +38,15 @@ private:
     // Busqueda vecino recurs LINEAL
     void nearestNeighborLINEAL(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia);
 
+    BinaryTree::node* insertRelaxed(node* actual, const vector<double>& c);
+
 
 public:
     // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
     BinaryTree(int d);
 
     //Constructora random
-    BinaryTree(int k, int n);
+    BinaryTree(int k, int n, int treeType);
 
     //insertar inicial
     void insert(const vector<double>& a);
@@ -63,6 +65,10 @@ public:
 
     // Mirar numero de nodos y inicializar a 0
     int checkNumNodes();
+
+    void KDRelaxedTree(int k, int n);
+
+    void insertRelaxed(const vector<double>& a);
 
 };
 

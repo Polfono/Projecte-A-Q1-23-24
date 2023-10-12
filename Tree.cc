@@ -57,7 +57,7 @@ BinaryTree::BinaryTree(int k, int n, int treeType) {
 
         if(treeType == 0) insert(values);
         else if (treeType == 1) insertRelaxed(values);
-        else if (treeType == 2) {}; // Insertar metodo squarish
+        else if (treeType == 2) insertSquarish(values); // Insertar metodo squarish
     }
 }
 
@@ -143,6 +143,47 @@ BinaryTree::node* BinaryTree::insertRelaxed(node* actual, const vector<double>& 
         actual->left = insertRelaxed(actual->left, c);
     else
         actual->right = insertRelaxed(actual->right, c);
+
+    return actual;
+}
+
+void BinaryTree::insertSquarish(const vector<double>& a) {
+    vector<pair<double,double>> minIMaxIni(a.size());
+    for (int i = 0; i < a.size(); i++) {
+        minIMaxIni[i].first = 0.0;
+        minIMaxIni[i].second = 1.0;
+    }
+    arrel = insertSquarish(arrel, a, );
+}
+
+//Util recursiu per a inserir a Squarish Tree
+//Necessitarem traslladar els valors maxim i minim de cada dimensió
+BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>>& minIMax) {
+    if (actual == nullptr) {
+        random_device myRandomDevice;
+        unsigned seed = myRandomDevice();
+        uniform_int_distribution<int> Uniforme(0, k-1);
+        default_random_engine RNG(seed);
+
+
+        node* newNode = new node;
+        newNode->clau = c;
+        if (minIMax.empty()) newNode->h = Uniforme(RNG);
+        else if ()
+        newNode->left = newNode->right = nullptr;
+        return newNode;
+    }
+
+    int dimension = actual->h;
+    if (c[dimension] < actual->clau[dimension]) {
+        minIMax[dimension].second = actual->clau[dimension];
+        actual->left = insertSquarish(actual->left, c, minIMax);
+    }
+    else {
+        minIMax[dimension].first = actual->clau[dimension];
+        actual->right = insertSquarish(actual->right, c, minIMax);
+    }
+
 
     return actual;
 }

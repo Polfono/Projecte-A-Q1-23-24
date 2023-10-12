@@ -5,6 +5,7 @@
 #include <random>
 #include <time.h>
 #include <cmath>
+#include <utility>
 using namespace std;
 
 
@@ -40,6 +41,8 @@ private:
 
     BinaryTree::node* insertRelaxed(node* actual, const vector<double>& c);
 
+    BinaryTree::node* insertSquarish(node* actual, const vector<double>& c);
+
 
 public:
     // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
@@ -69,6 +72,8 @@ public:
     void KDRelaxedTree(int k, int n);
 
     void insertRelaxed(const vector<double>& a);
+
+    void insertSquarish(const vector<double>& a);
 
 };
 

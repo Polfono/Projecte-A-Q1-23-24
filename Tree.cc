@@ -153,7 +153,7 @@ void BinaryTree::insertSquarish(const vector<double>& a) {
         minIMaxIni[i].first = 0.0;
         minIMaxIni[i].second = 1.0;
     }
-    arrel = insertSquarish(arrel, a, );
+    arrel = insertSquarish(arrel, a, minIMaxIni);
 }
 
 //Util recursiu per a inserir a Squarish Tree
@@ -168,8 +168,16 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
 
         node* newNode = new node;
         newNode->clau = c;
-        if (minIMax.empty()) newNode->h = Uniforme(RNG);
-        else if ()
+        int h = 0;
+        int dist = minIMax[0].second - minIMax[0].first;
+        for (int i = 1; i < k; i++) {
+            int newDist = minIMax[i].second - minIMax[i].first;
+            if (newDist > dist) {
+                h = i;
+                dist = newDist;
+            }
+        }
+        newNode->h = h;
         newNode->left = newNode->right = nullptr;
         return newNode;
     }

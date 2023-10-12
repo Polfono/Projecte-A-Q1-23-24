@@ -57,7 +57,7 @@ BinaryTree::BinaryTree(int k, int n, int treeType) {
 
         if(treeType == 0) insert(values);
         else if (treeType == 1) insertRelaxed(values);
-        else if (treeType == 2) insertSquarish(values); // Insertar metodo squarish
+        else if (treeType == 2) insertSquarish(values);
     }
 }
 
@@ -165,7 +165,6 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
         uniform_int_distribution<int> Uniforme(0, k-1);
         default_random_engine RNG(seed);
 
-
         node* newNode = new node;
         newNode->clau = c;
         int h = 0;
@@ -192,12 +191,9 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
         actual->right = insertSquarish(actual->right, c, minIMax);
     }
 
-
     return actual;
 }
 
-
-/*  DEBUG
 
 //Inicia la cerca del veí mes proper  al node origen LINEAL
 vector<double> BinaryTree::nearestNeighborLINEAL(const vector<double>& origen) {
@@ -254,5 +250,5 @@ void BinaryTree::print2D()
     print2DUtil(arrel, 0); //space = 0
 }
 
-*/
+
 

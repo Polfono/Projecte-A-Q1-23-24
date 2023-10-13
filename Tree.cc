@@ -158,7 +158,7 @@ void BinaryTree::insertSquarish(const vector<double>& a) {
 
 //Util recursiu per a inserir a Squarish Tree
 //Necessitarem traslladar els valors maxim i minim de cada dimensió
-BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>>& minIMax) {
+BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>> minIMax) {
     if (actual == nullptr) {
         random_device myRandomDevice;
         unsigned seed = myRandomDevice();
@@ -168,10 +168,10 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
         node* newNode = new node;
         newNode->clau = c;
         int h = 0;
-        int dist = minIMax[0].second - minIMax[0].first;
+        double dist = minIMax[0].second - minIMax[0].first;
         for (int i = 1; i < k; i++) {
-            int newDist = minIMax[i].second - minIMax[i].first;
-            if (newDist > dist) {
+            double newDist = minIMax[i].second - minIMax[i].first;
+            if (newDist >= dist) {
                 h = i;
                 dist = newDist;
             }

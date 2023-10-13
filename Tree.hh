@@ -41,7 +41,7 @@ private:
 
     BinaryTree::node* insertRelaxed(node* actual, const vector<double>& c);
 
-    BinaryTree::node* insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>>& minIMax);
+    BinaryTree::node* insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>> minIMax);
 
 
 public:

@@ -194,6 +194,7 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
     return actual;
 }
 
+/* DEBUG
 
 //Inicia la cerca del veí mes proper  al node origen LINEAL
 vector<double> BinaryTree::nearestNeighborLINEAL(const vector<double>& origen) {
@@ -249,6 +250,4 @@ void BinaryTree::print2D()
 {
     print2DUtil(arrel, 0); //space = 0
 }
-
-
-
+*/

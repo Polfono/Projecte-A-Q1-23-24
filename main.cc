@@ -27,6 +27,7 @@ int main() {
     cout << "Ver nodos visitados por consulta? 0-no 1-sí: ";
     cin >> c;
 
+
     // PARTE LOGARITMICA
     
     if(c) cout << "Nodos visitados para cada busqueda: ";
@@ -44,9 +45,9 @@ int main() {
             if(c) cout << aux << " ";
             sum += aux;
         }
-
         Arbol.BorrarInit();
     }
     cout << endl << "Numero medio de nodos visitados: " << sum/(t*q) << endl;
+
 }
 

@@ -41,7 +41,7 @@ int main() {
     c = 0;
 
     cout << endl << "[";
-    for (int n = 2000; n <= 100000; n += 2000) {
+    for (int n = 5000; n <= 100000; n += 5000) {
         q = n / 2;
         cout << endl << "[";
         for (int k = 2; k <= 6; ++k) {

@@ -37,12 +37,12 @@ int main() {
     cout << "Elige tipo de arbol (0-kd, 1-Relaxed, 2-Squarish): ";
     cin >> typeTree;
 
-    q = 1;
     t = 100;
     c = 0;
 
     cout << endl << "[";
     for (int n = 2000; n <= 100000; n += 2000) {
+        q = n / 2;
         cout << endl << "[";
         for (int k = 2; k <= 6; ++k) {
             int sum = 0;

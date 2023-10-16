@@ -69,8 +69,6 @@ public:
     // Mirar numero de nodos y inicializar a 0
     int checkNumNodes();
 
-    void KDRelaxedTree(int k, int n);
-
     void insertRelaxed(const vector<double>& a);
 
     void insertSquarish(const vector<double>& a);

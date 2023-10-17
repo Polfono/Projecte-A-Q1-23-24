@@ -28,7 +28,7 @@ BinaryTree::node* BinaryTree::insertRecursive(node* actual, const vector<double>
     if (actual == nullptr) {
         node* newNode = new node;
         newNode->clau = c;
-        newNode->h = height;
+        newNode->j = height % k;
         newNode->left = newNode->right = nullptr;
         return newNode;
     }
@@ -94,7 +94,7 @@ void BinaryTree::nearestNeighbor(node* actual, const vector<double>& origen, nod
             millorDistancia = actualDistancia;
     }
 
-    int j = actual->h % k;
+    int j = actual->j;
     double valorOrigen = origen[j];
     double valorActual = actual->clau[j];
 
@@ -133,12 +133,12 @@ BinaryTree::node* BinaryTree::insertRelaxed(node* actual, const vector<double>& 
 
         node* newNode = new node;
         newNode->clau = c;
-        newNode->h = Uniforme(RNG);
+        newNode->j = Uniforme(RNG);
         newNode->left = newNode->right = nullptr;
         return newNode;
     }
 
-    int dimension = actual->h;
+    int dimension = actual->j;
     if (c[dimension] < actual->clau[dimension])
         actual->left = insertRelaxed(actual->left, c);
     else
@@ -148,11 +148,7 @@ BinaryTree::node* BinaryTree::insertRelaxed(node* actual, const vector<double>& 
 }
 
 void BinaryTree::insertSquarish(const vector<double>& a) {
-    vector<pair<double,double>> minIMaxIni(a.size());
-    for (int i = 0; i < a.size(); i++) {
-        minIMaxIni[i].first = 0.0;
-        minIMaxIni[i].second = 1.0;
-    }
+    vector<pair<double, double>> minIMaxIni(a.size(), {0.0, 1.0});
     arrel = insertSquarish(arrel, a, minIMaxIni);
 }
 
@@ -160,15 +156,11 @@ void BinaryTree::insertSquarish(const vector<double>& a) {
 //Necessitarem traslladar els valors maxim i minim de cada dimensió
 BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>> minIMax) {
     if (actual == nullptr) {
-        random_device myRandomDevice;
-        unsigned seed = myRandomDevice();
-        uniform_int_distribution<int> Uniforme(0, k-1);
-        default_random_engine RNG(seed);
-
         node* newNode = new node;
         newNode->clau = c;
         int h = 0;
         double dist = minIMax[0].second - minIMax[0].first;
+
         for (int i = 1; i < k; i++) {
             double newDist = minIMax[i].second - minIMax[i].first;
             if (newDist >= dist) {
@@ -176,12 +168,13 @@ BinaryTree::node* BinaryTree::insertSquarish(node* actual, const vector<double>&
                 dist = newDist;
             }
         }
-        newNode->h = h;
+        
+        newNode->j = h % k;
         newNode->left = newNode->right = nullptr;
         return newNode;
     }
 
-    int dimension = actual->h;
+    int dimension = actual->j;
     if (c[dimension] < actual->clau[dimension]) {
         minIMax[dimension].second = actual->clau[dimension];
         actual->left = insertSquarish(actual->left, c, minIMax);
@@ -238,7 +231,7 @@ void BinaryTree::print2DUtil(node* root, int space)
 
     cout << endl << string(space, ' ');
 
-    cout << root->h << " ";
+    cout << root->j << " ";
 
     cout << endl;
 

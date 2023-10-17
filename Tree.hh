@@ -16,7 +16,7 @@ private:
         node* left;
         node* right;
         vector<double> clau;   
-        int h;  //altura
+        int j;  //discriminante
     };
     int count = 0;
     node* arrel;

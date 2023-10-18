@@ -21,60 +21,78 @@ private:
     int count = 0;
     node* arrel;
 
-    // Insertar nodo standard recursivo
+    // PRE: actual = nodo, c = vector de coord., height = altura
+    // POST: Insertar nodo standard recursivo
     BinaryTree::node* insertRecursive(node* actual, const vector<double>& c, int height);
-    
-    // Print árbol recursivo
+
+    // PRE: root = nodo, space = valor separación
+    // POST: Print árbol recursivo
     void print2DUtil(node* root, int space);
 
-    // Borrar árbol recursivo
+    // PRE: n = nodo
+    // POST: Borrar árbol recursivo
     void BorrarBinaryTree(node* n);
 
-    // Calcular distnacia euclidiana entre dos puntos P, Q
+    // PRE: P = punto 1, Q = punto 2
+    // POST: Calcular distnacia euclidiana entre dos puntos P, Q
     double CalcDistancia(const vector<double>& P, const vector<double>& Q);
 
-    // Búsqueda vecino recursivo
+    // PRE: actual = nodo, origen = coord. origen, vecino = nodo mas cercano hasta ahora, millorDistancia = mejor distancia hasta ahora
+    // POST: Búsqueda vecino recursivo
     void nearestNeighbor(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia);
 
-    // Búsqueda vecino recursivo LINEAL
+    // PRE: actual = nodo, origen = coord. origen, vecino = nodo mas cercano hasta ahora, millorDistancia = mejor distancia hasta ahora
+    // POST: Búsqueda vecino recursivo LINEAL
     void nearestNeighborLINEAL(node* actual, const vector<double>& origen, node*& vecino, double& millorDistancia);
 
-    // Insertar nodo tipo relaxed recursivo
+    // PRE: actual = nodo, c = coord. nodo
+    // POST: Insertar nodo tipo relaxed recursivo
     BinaryTree::node* insertRelaxed(node* actual, const vector<double>& c);
 
-    // Insertar nodo tipo squarish recursivo
+    // PRE: actual = nodo, c = coord. nodo, minImax = valores "bounding box"
+    // POST: Insertar nodo tipo squarish recursivo
     BinaryTree::node* insertSquarish(node* actual, const vector<double>& c, vector<pair<double,double>> minIMax);
 
 
 public:
-    // Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
+    // PRE: d = dimensión del árbol
+    // POST: Creadora: d = dimensions del arbre, a = clau (vector amb els valors) de la arrel
     BinaryTree(int d);
 
-    // Constructora árbol aleatorio
+    // PRE: k = dimensón, n = nodos, treeType = tipo de árbol (0-standard, 1-relaxed, 2-squarish)
+    // POST: Constructora árbol aleatorio
     BinaryTree(int k, int n, int treeType);
 
-    // Insertar nodo standard base
+    // PRE: a = coord. nodo
+    // POST: Insertar nodo standard base
     void insert(const vector<double>& a);
 
-    // Print árbol
+    // PRE: Ø
+    // POST: Print árbol
     void print2D();
 
-    // Borrar el árbol
+    // PRE: Ø
+    // POST: Borrar el árbol
     void BorrarInit();
 
-    // Devuelve el vecino mas cercano al punto origen
+    // PRE: origen = coord. origen
+    // POST: Devuelve el vecino mas cercano al punto origen
     vector<double> nearestNeighbor(const vector<double>& origen);
 
-    // Devuelve el vecino mas cercano al punto origen LINEAL
+    // PRE: origen = coord. origen
+    // POST: Devuelve el vecino mas cercano al punto origen LINEAL
     vector<double> nearestNeighborLINEAL(const vector<double>& origen);
 
-    // Mirar numero de nodos recorridos y inicializar a 0
+    // PRE: Ø
+    // POST: Mirar numero de nodos recorridos y inicializar a 0
     int checkNumNodes();
 
-    // Insertar nodo tipo relaxed base
+    // PRE: a = coord. nodo
+    // POST: Insertar nodo tipo relaxed base
     void insertRelaxed(const vector<double>& a);
 
-    // Insertar nodo tipo squarish base
+    // PRE: a = coord. nodo
+    // POST: Insertar nodo tipo squarish base
     void insertSquarish(const vector<double>& a);
 
 };

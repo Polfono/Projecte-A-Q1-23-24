@@ -13,7 +13,7 @@ Tree.o: Tree.cc Tree.hh
 	g++ $(OPCIONS) -c Tree.cc
 
 zip: Makefile Tree.cc Tree.hh main.cc 
-	zip Projecte-A-Q1-23-24.zip *.cc *.hh *.pdf *.ipynb *.md Makefile 
+	zip Projecte-A-Q1-23-24-Grup15.zip *.cc *.hh *.pdf *.ipynb *.md Makefile 
 
 clean: 
 	rm *.o *.exe  

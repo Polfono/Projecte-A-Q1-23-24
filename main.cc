@@ -41,4 +41,3 @@ int main() {
     }
     cout << endl << "Numero medio de nodos visitados: " << sum/(t*q) << endl;
 }
-

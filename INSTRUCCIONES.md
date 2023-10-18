@@ -1,10 +1,16 @@
 # Projecte-A-Q1-23-24
 
+Trabajo realizado por:
+-Pol Fonoyet González
+-Yassin El Kaisi Rahmoun
+-Gorka Parra Ordorica
+-Tahir Muhammad Aziz
+
+
 --------------------- INSTRUCCIONES DE EJECUCIÓN ------------------------
 
 Este manual de ejecución es solo compatible con las distribuciones de 
-Linux. Por ello, recomendamos el uso de Linux para ejecutar este 
-proyecto. 
+Linux. Por ello, recomendamos el uso de Linux para ejecutar los archivos. 
 
 Cualquier comando que se le indique lo tendrá que ejecutar en una consola
 de Linux (bash por ejemplo) y dentro de la carpeta Projecte-A-Q1-23-24.

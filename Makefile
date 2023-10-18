@@ -12,8 +12,8 @@ main.o: main.cc
 Tree.o: Tree.cc Tree.hh
 	g++ $(OPCIONS) -c Tree.cc
 
-tar: Makefile Tree.cc Tree.hh main.cc
-	tar -cvf practica.tar .cc.hh Makefile
+zip: Makefile Tree.cc Tree.hh main.cc 
+	zip Projecte-A-Q1-23-24.zip *.cc *.hh *.pdf *.ipynb *.md Makefile 
 
 clean: 
-	rm *.o *.exe *.tar
+	rm *.o *.exe  

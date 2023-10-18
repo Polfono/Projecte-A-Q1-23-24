@@ -67,7 +67,7 @@ Ejecutar main.exe:
 -Introducir el número de árboles de n nodos que se crearan
 -Introducir el número de consultas a cada árbol
 
-Como resultado nos dará el número medio de nodos visitados.
+Como resultado nos dará el número medio de nodos visitados por consulta.
 
 ------------------------------ PASO 3 ------------------------------------
 

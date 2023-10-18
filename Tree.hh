@@ -18,7 +18,7 @@ private:
         vector<double> clau;   
         int j;  //discriminante
     };
-    int count = 0;
+    int count = 0; // Conteo de nodos visitados
     node* arrel;
 
     // PRE: actual = nodo, c = vector de coord., height = altura
